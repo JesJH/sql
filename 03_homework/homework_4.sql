@@ -66,18 +66,33 @@ FROM customer_purchases
 HINT: you might need to use INSTR(product_name,'-') to find the hyphens. INSTR will help split the column.
 */
 SELECT
-product_name,
+*,
 CASE WHEN
 	product_name LIKE('%-%') THEN RTRIM(LTRIM(SUBSTRING(PRODUCT_NAME,instr(PRODUCT_NAME,'-')+1)))
 ELSE NULL
 END AS DESCRIPTION
 FROM PRODUCT
 
+/* 2. Filter the query to show any product_size value that contain a number with REGEXP. */
+SELECT
+*,
+CASE WHEN
+	product_name LIKE('%-%') THEN RTRIM(LTRIM(SUBSTRING(PRODUCT_NAME,instr(PRODUCT_NAME,'-')+1)))
+ELSE NULL
+END AS DESCRIPTION
+FROM PRODUCT
+WHERE product_size REGEXP '[0-9]'
 
---UNION
+
+-- UNION
 /* 1. Using a UNION, write a query that displays the market dates with the highest and lowest total sales.
-HINT: There are a possibly a few ways to do this query, but if you're struggling, try the following: 1) Create a CTE/Temp Table to find sales values grouped dates; 2) Create another CTE/Temp table with a rank windowed function on the previous query to create "best day" and "worst day"; 3) Query the second temp table twice, once for the best day, once for the worst day, with a UNION binding them.
-*/
+
+HINT: There are a possibly a few ways to do this query, but if you're struggling, try the following: 
+1) Create a CTE/Temp Table to find sales values grouped dates; 
+2) Create another CTE/Temp table with a rank windowed function on the previous query to create 
+"best day" and "worst day"; 
+3) Query the second temp table twice, once for the best day, once for the worst day, 
+with a UNION binding them. */
 
 WITH dailysale AS 
 	(SELECT
