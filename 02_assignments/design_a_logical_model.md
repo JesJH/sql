@@ -5,6 +5,7 @@ Create a logical model for a small bookstore. 📚
 
 At the minimum it should have employee, order, sales, customer, and book entities (tables). Determine sensible column and table design based on what you know about these concepts. Keep it simple, but work out sensible relationships to keep tables reasonably sized. Include a date table. There are several tools online you can use, I'd recommend [_Draw.io_](https://www.drawio.com/) or [_LucidChart_](https://www.lucidchart.com/pages/).
 
+![Alt text](D:\Jes\Education\2024 DSI\Week 4 & 5 - SQL\Assignment\Assignment 1 Question 1.png)
 ## Question 2
 We want to create employee shifts, splitting up the day into morning and evening. Add this to the ERD.
 
@@ -17,7 +18,16 @@ Bonus: Are there privacy implications to this, why or why not?
 ```
 Your answer...
 ```
+Type 1 will overwrite existing customer address with new updates, while type 2 will keep record of all historical addresses and add new rows when a new address is added.
 
+For Type 1 table, these columns will exist: customer_id, customer_address, entry_date
+For Type 2 table, these columns will exist: customer_id, entry_date, customer_address
+
+For Type 1 table, when a new customer_id address is added, a new row will be written with that customer's id, address and entry_date of the date of entry. If an existing client wants to update their address, existing customer information will be overwritten where the new address will be stored in customer_address and entry_date will change to date of entry.
+
+For Type 2 table, when any customer address is added, a new row of data is added to the table where the entry date is the date of entry and end date will be null. If the customer had a pre existing address in the database, fill the end date of the prior address as the date of the new address entry.
+
+In terms of privacy implications, user access to the data will need to be controlled to control who can access the data and also track who is accessing the data when to verify if client data is being accessed for appropriate business reasons.
 ## Question 4
 Review the AdventureWorks Schema [here](https://i.stack.imgur.com/LMu4W.gif)
 
@@ -25,6 +35,8 @@ Highlight at least two differences between it and your ERD. Would you change any
 ```
 Your answer...
 ```
+1. They created different schemas to organize related tables into different groups and used colours to represent each schema.
+2. Identified which columns of each tables are primary keys and foreign keys
 
 # Criteria
 
