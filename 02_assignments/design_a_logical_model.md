@@ -21,11 +21,12 @@ Your answer...
 Type 1 will overwrite existing customer address with new updates, while type 2 will keep record of all historical addresses and add new rows when a new address is added.
 
 For Type 1 table, these columns will exist: customer_id, customer_address, entry_date
-For Type 2 table, these columns will exist: customer_id, entry_date, customer_address
+For Type 2 table, these columns will exist: customer_id, entry_date, end_date, customer_address
 
 For Type 1 table, when a new customer_id address is added, a new row will be written with that customer's id, address and entry_date of the date of entry. If an existing client wants to update their address, existing customer information will be overwritten where the new address will be stored in customer_address and entry_date will change to date of entry.
 
 For Type 2 table, when any customer address is added, a new row of data is added to the table where the entry date is the date of entry and end date will be null. If the customer had a pre existing address in the database, fill the end date of the prior address as the date of the new address entry.
+When an order is entered, the order entry date should reference the customer table to check for address entry where the order entry date is between entry_date and end_date.
 
 In terms of privacy implications, user access to the data will need to be controlled to control who can access the data and also track who is accessing the data when to verify if client data is being accessed for appropriate business reasons.
 ## Question 4
